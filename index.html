@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    margin-top: 50px;
+    font-size: 36px;
+    color: #333;
+  }
+  .countdown {
+    font-size: 48px;
+    color: #e74c3c;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+  <h1>Contagem Regressiva para seu G ir ai</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <script>
+    // Definindo a data alvo (30 de dezembro de 2023)
+    const targetDate = new Date('2023-12-30T00:00:00').getTime();
+
+    // Atualizando o contador a cada segundo
+    const countdown = document.getElementById('countdown');
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // Cálculos para dias, horas, minutos e segundos
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Exibindo o contador na página HTML
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000); // Atualizar a cada segundo (1000 milissegundos)
+  </script>
+</body>
+</html>
