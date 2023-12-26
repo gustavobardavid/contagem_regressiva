@@ -11,22 +11,25 @@
     background-color: #f7f7f7;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Para esconder o overflow das partículas */
   }
   h1 {
     margin-top: 50px;
     font-size: 36px;
     color: #333;
   }
-  .countdown {
+  .countdown, .grande-dia {
     font-size: 48px;
     color: #e74c3c;
     margin-top: 30px;
   }
+ 
 </style>
 </head>
 <body>
-  <h1>Contagem Regressiva para seu G ir ai</h1>
+  <h1 id="h1">Contagem Regressiva para seu G ir aí</h1>
   <div class="countdown" id="countdown"></div>
+  <div class="grande-dia"></div>
 
   <script>
     // Definindo a data alvo (30 de dezembro de 2023)
@@ -34,6 +37,9 @@
 
     // Atualizando o contador a cada segundo
     const countdown = document.getElementById('countdown');
+    const explosionContainer = document.getElementById('explosion-container');
+    let h1 = document.querySelector("#h1");
+    let grandedia = document.querySelector(".grande-dia");
     setInterval(function() {
       const now = new Date().getTime();
       const distance = targetDate - now;
@@ -46,7 +52,19 @@
 
       // Exibindo o contador na página HTML
       countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // Adicionando a explosão quando o contador chegar a zero
+      if (distance <= 0) {
+        explode();
+      }
     }, 1000); // Atualizar a cada segundo (1000 milissegundos)
+
+    function explode() {
+      // Remover o texto do contador
+      countdown.style.display = 'none';
+      h1.style.display= 'none';
+      grandedia.innerHTML = `Chegou o grande dia`;
+    }
   </script>
 </body>
 </html>
